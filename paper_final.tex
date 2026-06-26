@@ -37,7 +37,7 @@ Brands spent over \$21 billion on influencer campaigns in 2024, yet the
 standard pricing unit is gross reach: views, followers, and aggregate
 engagement rates that say nothing about whether the audience actually
 matches the brand's customers. This paper addresses two related problems.
-First, we introduce the \textbf{Audience-Brand Alignment Index (ABAI)}, a
+First, I introduce the \textbf{Audience-Brand Alignment Index (ABAI)}, a
 weighted score over geographic, demographic, and psychographic overlap
 between a creator's audience and a brand's target market, along with the
 \textbf{Vanity Metric Overestimation Factor (VMOF)}, the ratio of
@@ -46,7 +46,7 @@ first-party Instagram Insights from @aneela\_veldi (1{,}000{,}000 reel
 views; 628{,}000 accounts reached), a US beauty brand would overpay by
 3.41 times at standard CPM rates, a gap of \$17{,}662 per million views.
 The same creator is reasonably priced for an India-focused tech brand
-(ABAI\,=\,0.674). Second, we build a bot-detection classifier combining
+(ABAI\,=\,0.674). Second, I build a bot-detection classifier combining
 temporal entropy, follower burstiness, and cross-modal semantic coherence
 in a LightGBM model. The fusion reaches AUROC\,=\,1.000 on a controlled
 corpus, but the more useful finding is that follower burstiness alone
@@ -118,7 +118,7 @@ demonstrated that perceived trustworthiness mediates purchase intent, but
 measured trustworthiness at the creator level rather than as a function of
 audience composition. Neither study provides a mechanism for adjusting campaign
 value based on who the audience actually is. The ABAI metric proposed here
-is, to our knowledge, the first attempt to do that in closed form.
+is, to my knowledge, the first attempt to do that in closed form.
 
 \subsection{Inauthentic Engagement Detection}
 
@@ -136,7 +136,7 @@ topology~\cite{yang2014,bessi2016}, and content-language
 analysis~\cite{cresci2020}. Varol et al.~\cite{varol2017} included
 follower-growth velocity as a behavioral signal. What the literature has not
 examined is how the utility of these signals changes after a major platform
-algorithm shift. The burstiness inversion we document here is, to our
+algorithm shift. The burstiness inversion documented here is, to my
 knowledge, a previously unreported failure mode.
 
 \subsection{Algorithm Changes and Model Drift}
@@ -201,7 +201,7 @@ data pertains solely to the author's own account.
 
 \subsection{Synthetic Engagement Corpus}
 
-For the bot-detection experiment we construct a corpus of 1{,}000 engagement
+For the bot-detection experiment I construct a corpus of 1{,}000 engagement
 sequences: 500 authentic (label 0) and 500 commercial-bot (label 1).
 Authentic like-arrival sequences are drawn from a Poisson process with
 $\lambda \approx 22$ events/hour, fitted to the observed arrival rate on
@@ -220,7 +220,7 @@ a generic pool. Random seed is fixed at 42 throughout.
 
 \subsection{ROI Temporal Dataset}
 
-For the temporal stability experiment we generate 1{,}000 campaign records
+For the temporal stability experiment I generate 1{,}000 campaign records
 split evenly between a pre-2022 cohort ($n=500$) and a post-2023 cohort
 ($n=500$). Each record carries behavioral features (follower count,
 engagement rate, posting cadence, reach rate) and semantic features
@@ -241,7 +241,7 @@ algorithm change.
 
 \subsection{Audience-Brand Alignment Index (ABAI)}
 
-We define ABAI for a (creator $c$, brand $b$) pair as:
+I define ABAI for a (creator $c$, brand $b$) pair as:
 \begin{equation}
   \text{ABAI}(c,b) = w_g \cdot \text{geo}(c,b)
                    + w_d \cdot \text{gender}(c,b)
@@ -256,7 +256,7 @@ reflecting the relative prioritization of geographic, then demographic,
 then age targeting in typical campaign briefs~\cite{imhub2024}. The
 weights sum to one, so $\text{ABAI} \in [0,1]$.
 
-From ABAI we derive two quantities. The adjusted campaign value scales
+From ABAI I derive two quantities. The adjusted campaign value scales
 the naive (gross-reach) value by the alignment score:
 \begin{align}
   V_{\text{adj}} &= V_{\text{naive}} \times \text{ABAI}(c,b) \label{eq:vadj}\\
@@ -269,7 +269,7 @@ paid for 3.41 times the brand-relevant reach it received.
 
 \subsection{Bot Detection: Multi-Signal LightGBM}
 
-We extract three features per engagement sequence.
+I extract three features per engagement sequence.
 
 \textit{Temporal entropy.} Sample entropy~\cite{richman2000} computed over
 the inter-event times of like arrivals: $\text{SampEn}(m, r, N) = -\ln(A/B)$,
@@ -299,15 +299,15 @@ typically reference the post content, producing higher coherence.
 
 All three features are fed to a LightGBM~\cite{ke2017} classifier with
 200 estimators, 63 leaves, learning rate 0.05, and subsample 0.8, evaluated
-with 5-fold stratified cross-validation. We also evaluate each feature in
+with 5-fold stratified cross-validation. I also evaluate each feature in
 isolation to identify which signals are carrying the weight.
 
 \subsection{ROI Temporal Stability}
 
-For each feature family $F \in \{\text{behavioral, semantic}\}$ we train
+For each feature family $F \in \{\text{behavioral, semantic}\}$ I train
 an independent gradient-boosted regressor on the pre-2022 cohort using an
 80/20 train-test split, then compute Spearman~$\rho$ between predicted and
-actual ROI on the held-out 20\%. We repeat the evaluation on the post-2023
+actual ROI on the held-out 20\%. I repeat the evaluation on the post-2023
 cohort and report $\Delta\rho = \rho_{\text{post}} - \rho_{\text{pre}}$ as
 a measure of how much each feature family's predictive value changed across
 the algorithm transition.
