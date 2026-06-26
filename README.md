@@ -10,8 +10,7 @@
 
 <p align="center">
   <strong>Aneela Veldi</strong><br>
-  Independent Researcher, Chicago, Illinois<br>
-  <a href="mailto:aneelaveldi09@gmail.com">aneelaveldi09@gmail.com</a>
+  Independent Researcher
 </p>
 
 ---
